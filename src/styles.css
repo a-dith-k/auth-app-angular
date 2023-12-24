@@ -1,1 +1,9 @@
-/* You can add global styles to this file, and also import other style files */
+@import "bootstrap/dist/css/bootstrap.css";
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/*all ng-invalid class inside form*/
+form .ng-touched.ng-invalid  {
+  border: 2px solid red !important;
+}
