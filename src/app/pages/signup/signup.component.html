@@ -77,7 +77,7 @@
             </div>
           </div>
         </div>
-        <button [disabled]="f.control.invalid" class="form-control" mat-raised-button color="primary">Submit</button>
+        <button [disabled]="f.control.touched&&f.control.invalid" class="form-control" mat-raised-button color="primary">Submit</button>
       </form>
     </div>
 
