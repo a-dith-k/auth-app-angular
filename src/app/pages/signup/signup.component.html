@@ -4,8 +4,11 @@
       <div class="form-heading text-center mt-5">
         <h2>Sign up</h2>
       </div>
-      <form ngForm #f="ngForm" (ngSubmit)="registerUser(f)">
+      <form class="signup-form" ngForm #f="ngForm" (ngSubmit)="registerUser(f)">
         <div class="mb-3">
+          <div *ngIf="invalidUsername" class="alert alert-danger">
+            {{serverResponse}}
+          </div>
           <label  for="username" class="form-label">Username</label>
           <input
             ngModel

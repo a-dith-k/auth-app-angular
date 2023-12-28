@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import {UserRegisterService} from "../../services/user-register.service";
+import {AuthService, RegisterRequest} from "../../services/auth.service";
 import {Form, FormGroup, NgForm} from "@angular/forms";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-signup',
@@ -9,23 +10,42 @@ import {Form, FormGroup, NgForm} from "@angular/forms";
 })
 export class SignupComponent {
 
-  constructor(private registerService:UserRegisterService) {
+  constructor(private router:Router,
+              private registerService:AuthService) {
 
   }
+
+  invalidUsername=false;
+  serverResponse:string="";
 
   registerUser(form:NgForm) {
     console.log(form.value);
 
-    let user:RegisterRequest={
-          username:form.value.username,
-          password:form.value.password
-    }
+      let user:RegisterRequest={
+            username:form.value.username,
+            password:form.value.password
+      }
 
-    this.registerService.register(user)
+    this.registerService
+      .registerUser(user).subscribe((response:any) =>{
+      if(response.userId)
+        this.router.navigateByUrl("/sign-in").then()
+    }, err => {
+      if(err){
+        this.invalidUsername=true;
+        setTimeout(()=>{
+          this.invalidUsername=false;
+        },4000)
+        this.serverResponse=err.error.message;
+        console.log(err)
+      }
+    })
   }
+
+
+
+
+
 }
 
-export interface RegisterRequest{
-  username:string,
-  password:string
-}
+

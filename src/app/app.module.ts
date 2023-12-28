@@ -9,9 +9,15 @@ import {MatButtonModule} from "@angular/material/button";
 import { SignupComponent } from './pages/signup/signup.component';
 import { HomeComponent } from './pages/home/home.component';
 import { SignInComponent } from './pages/sign-in/sign-in.component';
-import {FormsModule} from "@angular/forms";
-import {UserRegisterService} from "./services/user-register.service";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {AuthService} from "./services/auth.service";
 import {HttpClientModule} from "@angular/common/http";
+import {MatInputModule} from '@angular/material/input';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { AccessDeniedComponent } from './components/access-denied/access-denied.component';
+import {MatCardModule} from "@angular/material/card";
+import {MatDialog, MatDialogModule} from "@angular/material/dialog";
+import { DialogAnimationComponent } from './components/dialog-animation/dialog-animation.component';
 
 @NgModule({
   declarations: [
@@ -19,17 +25,24 @@ import {HttpClientModule} from "@angular/common/http";
     NavbarComponent,
     SignupComponent,
     HomeComponent,
-    SignInComponent
+    SignInComponent,
+    ProfileComponent,
+    AccessDeniedComponent,
+    DialogAnimationComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatButtonModule,
-    FormsModule,
-    HttpClientModule
-  ],
-  providers: [UserRegisterService],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatButtonModule,
+        FormsModule,
+        HttpClientModule,
+        MatInputModule,
+        ReactiveFormsModule,
+        MatCardModule,
+        MatDialogModule
+    ],
+  providers: [AuthService,MatDialog],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

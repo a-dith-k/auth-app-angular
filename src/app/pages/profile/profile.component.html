@@ -1,0 +1,40 @@
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <div class="col-md-5 text-center mt-5">
+      <mat-card class="p-2">
+        <div class="p-2">
+          <img src="assets/profile/user.png" width="350" height="350" alt="">
+        </div>
+        <form (ngSubmit)="updateProfile()">
+          <mat-form-field class="w-100">
+            <mat-label>username</mat-label>
+            <input matInput [disabled]="!isEditMode" [value]="currentUser.username">
+          </mat-form-field>
+
+          <mat-form-field class="w-50 pe-1">
+            <mat-label>First name</mat-label>
+            <input matInput [disabled]="!isEditMode" [value]="currentUser.firstName">
+          </mat-form-field>
+          <mat-form-field class="w-50">
+            <mat-label>Last Name </mat-label>
+            <input matInput [disabled]="!isEditMode" [value]="currentUser.lastName" >
+          </mat-form-field>
+          <mat-form-field class="w-50">
+            <mat-label>Place </mat-label>
+            <input matInput [disabled]="!isEditMode" [value]="currentUser.place" >
+          </mat-form-field>
+          <mat-form-field class="w-50">
+            <mat-label>Age</mat-label>
+            <input matInput [disabled]="!isEditMode" [value]="currentUser.age" >
+          </mat-form-field>
+          <mat-card-actions align="end">
+            <button type="button" *ngIf="!isEditMode" (click)="isEditMode=!isEditMode" mat-button>EDIT</button>
+            <button mat-button  *ngIf="isEditMode"  (click)="openDialog('0ms', '0ms')">UPDATE</button>
+          </mat-card-actions>
+        </form>
+
+      </mat-card>
+    </div>
+  </div>
+</div>
+

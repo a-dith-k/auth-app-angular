@@ -4,6 +4,6 @@ html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 /*all ng-invalid class inside form*/
-form .ng-touched.ng-invalid  {
+.signup-form .ng-touched.ng-invalid  {
   border: 2px solid red !important;
 }

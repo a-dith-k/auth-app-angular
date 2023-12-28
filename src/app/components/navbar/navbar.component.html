@@ -12,9 +12,18 @@
 
       </ul>
       <div class="d-flex" role="search">
-        <button class="me-2 px-5 py-4" mat-raised-button  routerLink="sign-in">Sign in</button>
-        <button class="me-2 px-5 py-4" mat-raised-button routerLink="sign-up" color="primary">Sign up</button>
+        <button *ngIf="!isLoggedIn"  class="me-2 px-5 py-4" mat-raised-button  routerLink="/sign-in">Sign in</button>
+        <button *ngIf="!isLoggedIn"  class="me-2 px-5 py-4" mat-raised-button routerLink="/sign-up" color="primary">Sign up</button>
       </div>
+      <div class="profile-icon" *ngIf="isLoggedIn"  [routerLink]="['users',currentUser]">
+        <span>
+          <svg xmlns="http://www.w3.org/2000/svg" height="24" width="22" viewBox="0 0 448 512">
+          <path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"/>
+          </svg>
+        </span>
+        <span class="ms-1 me-3">{{currentUser}}</span>
+      </div>
+      <button  *ngIf="isLoggedIn" (click)="authService.logOut()" mat-raised-button color="warn">logOut</button>
     </div>
   </div>
 </nav>

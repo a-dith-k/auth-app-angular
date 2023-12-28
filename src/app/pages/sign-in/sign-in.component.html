@@ -1,1 +1,38 @@
-<p>sign-in works!</p>
+<div class="container-fluid vh-100">
+  <div class="row justify-content-center align-items-center mx-1 mx-md-0 h-75">
+    <div class="col-md-4   pb-5 bg-light rounded rounded-1 shadow">
+      <div class="text-center m-4">
+        <h2>Sign in</h2>
+      </div>
+      <div *ngIf="invalidUsernameOrPassword" class="d-flex justify-content-center " >
+        <h3 class="alert alert-danger w-75 py-2">invalid username or password</h3>
+      </div>
+      <form [formGroup]="form" (ngSubmit)="login(form)" class=" text-center" >
+          <mat-form-field class="w-75">
+            <mat-label>Username</mat-label>
+            <input formControlName="username"  matInput type="text">
+            <mat-error *ngIf="username?.hasError('required')" >
+              username is <strong>required</strong>
+            </mat-error>
+            <mat-error *ngIf="username?.hasError('minlength')" >
+             length should  be  between 6 to 10 characters
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="w-75 ">
+            <mat-label>Password</mat-label>
+            <input formControlName="password" matInput type="text">
+            <mat-error *ngIf="password?.hasError('required')">
+              password is <strong>required</strong>
+            </mat-error>
+            <mat-error *ngIf="password?.hasError('minlength')||password?.hasError('maxlength')" >
+              length should be between {{password?.getError('minlength').requiredLength}} to  16 characters
+            </mat-error>
+          </mat-form-field>
+        <div class="mb-3">
+          <button [disabled]="form.touched&&form.invalid" mat-raised-button color="primary"  class="w-75 py-4">Sign in</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
