@@ -1,6 +1,6 @@
+import { MatTableModule } from '@angular/material/table';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -18,6 +18,12 @@ import { AccessDeniedComponent } from './components/access-denied/access-denied.
 import {MatCardModule} from "@angular/material/card";
 import {MatDialog, MatDialogModule} from "@angular/material/dialog";
 import { DialogAnimationComponent } from './components/dialog-animation/dialog-animation.component';
+import { AdminDashboardComponent } from './pages/admin-dashboard/admin-dashboard.component';
+import { AdminService } from './services/admin/admin.service';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatSortModule} from '@angular/material/sort';
+import { AddUserComponent } from './pages/add-user/add-user.component';
+import { UpdateUserComponent } from './pages/update-user/update-user.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +34,10 @@ import { DialogAnimationComponent } from './components/dialog-animation/dialog-a
     SignInComponent,
     ProfileComponent,
     AccessDeniedComponent,
-    DialogAnimationComponent
+    DialogAnimationComponent,
+    AdminDashboardComponent,
+    AddUserComponent,
+    UpdateUserComponent
   ],
     imports: [
         BrowserModule,
@@ -40,9 +49,12 @@ import { DialogAnimationComponent } from './components/dialog-animation/dialog-a
         MatInputModule,
         ReactiveFormsModule,
         MatCardModule,
-        MatDialogModule
+        MatDialogModule,
+        MatTableModule,
+        MatPaginatorModule,
+        MatSortModule
     ],
-  providers: [AuthService,MatDialog],
+  providers: [AuthService,MatDialog,AdminService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -3,33 +3,105 @@
     <div class="col-md-5 text-center mt-5">
       <mat-card class="p-2">
         <div class="p-2">
-          <img src="assets/profile/user.png" width="350" height="350" alt="">
+          <img [src]="profileUrl" width="350" height="350" alt="">
         </div>
-        <form (ngSubmit)="updateProfile()">
+        <form  *ngIf="!isEditMode">
+        
           <mat-form-field class="w-100">
             <mat-label>username</mat-label>
-            <input matInput [disabled]="!isEditMode" [value]="currentUser.username">
+            <input  
+              matInput 
+              disabled 
+              [value]="currentUser.username">
           </mat-form-field>
 
           <mat-form-field class="w-50 pe-1">
             <mat-label>First name</mat-label>
-            <input matInput [disabled]="!isEditMode" [value]="currentUser.firstName">
+            <input 
+              disabled
+              matInput 
+              [value]="currentUser.firstName">
           </mat-form-field>
+
           <mat-form-field class="w-50">
             <mat-label>Last Name </mat-label>
-            <input matInput [disabled]="!isEditMode" [value]="currentUser.lastName" >
+            <input 
+              disabled
+              matInput  
+              [value]="currentUser.lastName"    >
           </mat-form-field>
+
           <mat-form-field class="w-50">
             <mat-label>Place </mat-label>
-            <input matInput [disabled]="!isEditMode" [value]="currentUser.place" >
+            <input 
+              disabled
+              matInput 
+              [value]="currentUser.place" >
           </mat-form-field>
+
           <mat-form-field class="w-50">
             <mat-label>Age</mat-label>
-            <input matInput [disabled]="!isEditMode" [value]="currentUser.age" >
+            <input 
+              disabled
+              matInput  
+              [value]="currentUser.age" >
           </mat-form-field>
+
           <mat-card-actions align="end">
-            <button type="button" *ngIf="!isEditMode" (click)="isEditMode=!isEditMode" mat-button>EDIT</button>
-            <button mat-button  *ngIf="isEditMode"  (click)="openDialog('0ms', '0ms')">UPDATE</button>
+            <button type="button"  (click)="edit()" mat-button>EDIT</button>
+          </mat-card-actions>
+        </form>
+        <form *ngIf="isEditMode" [formGroup]="form"  (ngSubmit)="updateProfile(form.value)">
+          <div class="text-start">
+            <p  class="form-label"> Select profile image</p>
+          </div>
+          
+          <div class="my-2 input-group text-start">
+            <input #image id="image" class="form-control"
+              type="file" (change)="onFileChange($event)"
+               >  
+               <button [disabled]="!image.value" (click)="uploadProfile()" class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Upload</button>
+          </div>
+
+          <mat-form-field class="w-100">
+            <mat-label>username</mat-label>
+            <input 
+              matInput 
+              [value]="currentUser.username">
+          </mat-form-field>
+
+          <mat-form-field class="w-50 pe-1">
+            <mat-label>First name</mat-label>
+            <input
+              formControlName="firstName" 
+              matInput 
+              >
+          </mat-form-field>
+
+          <mat-form-field class="w-50">
+            <mat-label>Last Name </mat-label>
+            <input 
+            formControlName="lastName" 
+            matInput>
+          </mat-form-field>
+
+          <mat-form-field class="w-50">
+            <mat-label>Place </mat-label>
+            <input 
+              formControlName="place" 
+              matInput>
+          </mat-form-field>
+
+          <mat-form-field class="w-50">
+            <mat-label>Age</mat-label>
+            <input 
+           type="number"
+              formControlName="age" 
+              matInput>
+          </mat-form-field>
+
+          <mat-card-actions align="end">
+            <button mat-button>UPDATE</button>
           </mat-card-actions>
         </form>
 

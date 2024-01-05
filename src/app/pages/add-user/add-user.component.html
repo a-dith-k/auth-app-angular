@@ -1,0 +1,25 @@
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <div class="col-md-4 m-3 border">
+      <div class="heading text-center">
+        <h1>Add User</h1>
+      </div>
+      <form #form="ngForm" (ngSubmit)="addUser(form.value)" class="p-3">
+        <mat-form-field class="w-100">
+          <mat-label>username</mat-label>
+          <input ngModel #username="ngModel" minlength="6"  required name="username" matInput  type="text" >
+          <mat-error *ngIf="username.errors?.['required']">required</mat-error>
+          <mat-error *ngIf="username.errors?.['minlength']">minimum 6 characters</mat-error>
+        </mat-form-field>
+        <mat-form-field class="w-100">
+          <mat-label>password</mat-label>
+          <input ngModel #password="ngModel" minlength="8"  required name="password" matInput  type="text" >
+          <mat-error *ngIf="password.errors?.['required']">required</mat-error>
+          <mat-error *ngIf="password.errors?.['minlength']">minimum 8 characters</mat-error>
+        </mat-form-field>
+        <button mat-raised-button class="w-100 py-4" color="primary">addUser</button>
+
+      </form>
+    </div>
+  </div>
+</div>

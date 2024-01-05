@@ -58,6 +58,7 @@ export class AuthService {
     if(token==null)return null;
     let helper
       =new JwtHelperService();
+    console.log(helper.decodeToken(token).admin)
     return helper.decodeToken(token).sub;
   }
 
@@ -68,6 +69,8 @@ export class AuthService {
     this.isLoggedInSubject.next(false);
     // this.CurrentUserSubject.next("");
   }
+
+
 }
 
 export interface LoginRequest {

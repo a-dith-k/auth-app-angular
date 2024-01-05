@@ -1,3 +1,4 @@
+import { UserNameValidators } from './../../validators/username.validators';
 import { Component } from '@angular/core';
 import {AuthService, LoginRequest} from "../../services/auth.service";
 import {FormControl, FormGroup, NgForm, Validators} from "@angular/forms";
@@ -16,7 +17,7 @@ export class SignInComponent {
   invalidUsernameOrPassword=false;
 
   form=new FormGroup({
-    username:new FormControl('',[Validators.required,Validators.minLength(6),Validators.maxLength(10)]),
+    username:new FormControl('',[Validators.required,Validators.minLength(6),Validators.maxLength(10),UserNameValidators.cannotContainSpace]),
     password:new FormControl('',[Validators.required,Validators.minLength(8),Validators.maxLength(16)])
   })
 

@@ -1,3 +1,4 @@
+import { AdminDashboardComponent } from './pages/admin-dashboard/admin-dashboard.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {HomeComponent} from "./pages/home/home.component";
@@ -7,6 +8,8 @@ import {ProfileComponent} from "./pages/profile/profile.component";
 import {AppComponent} from "./app.component";
 import {authGuard} from "./guard/auth.guard";
 import {AccessDeniedComponent} from "./components/access-denied/access-denied.component";
+import {AddUserComponent} from "./pages/add-user/add-user.component";
+import {UpdateUserComponent} from "./pages/update-user/update-user.component";
 
 const routes: Routes = [{path:"",component:HomeComponent},
                         {path:"sign-up",component:SignupComponent},
@@ -16,7 +19,11 @@ const routes: Routes = [{path:"",component:HomeComponent},
                           component:ProfileComponent,
                           canActivate:[authGuard]
                         },
-                        {path:"**",component:AccessDeniedComponent}
+                        {path:"admin/dashboard",component:AdminDashboardComponent}
+  ,
+                        {path:"admin/add-user",component:AddUserComponent},
+                        {path:"admin/update-user/:id",component:UpdateUserComponent},
+                        {path:"**",component:AccessDeniedComponent},
                         ];
 
 @NgModule({

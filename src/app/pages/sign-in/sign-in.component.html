@@ -17,6 +17,9 @@
             <mat-error *ngIf="username?.hasError('minlength')" >
              length should  be  between 6 to 10 characters
             </mat-error>
+            <mat-error *ngIf="username?.hasError('cannotContainSpace')" >
+              username should not contain space
+             </mat-error>
           </mat-form-field>
 
           <mat-form-field class="w-75 ">
