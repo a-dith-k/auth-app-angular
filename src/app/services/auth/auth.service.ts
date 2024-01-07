@@ -55,10 +55,10 @@ export class AuthService {
 
   currentUser(){
     let token= localStorage.getItem('token');
-    if(token==null)return null;
+    if(!token||token==null)return null;
+
     let helper
       =new JwtHelperService();
-    console.log(helper.decodeToken(token).admin)
     return helper.decodeToken(token).sub;
   }
 

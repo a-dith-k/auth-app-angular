@@ -10,6 +10,7 @@ import {authGuard} from "./guard/auth.guard";
 import {AccessDeniedComponent} from "./components/access-denied/access-denied.component";
 import {AddUserComponent} from "./pages/add-user/add-user.component";
 import {UpdateUserComponent} from "./pages/update-user/update-user.component";
+import { adminGuard } from './guard/admin.guard';
 
 const routes: Routes = [{path:"",component:HomeComponent},
                         {path:"sign-up",component:SignupComponent},
@@ -19,10 +20,17 @@ const routes: Routes = [{path:"",component:HomeComponent},
                           component:ProfileComponent,
                           canActivate:[authGuard]
                         },
-                        {path:"admin/dashboard",component:AdminDashboardComponent}
-  ,
-                        {path:"admin/add-user",component:AddUserComponent},
-                        {path:"admin/update-user/:id",component:UpdateUserComponent},
+                        { 
+                          path:"admin",
+                          canActivate:[adminGuard],
+                          children:[
+                              {path:"dashboard",component:AdminDashboardComponent},
+                              {path:"add-user",component:AddUserComponent},
+                              {path:"update-user/:id",component:UpdateUserComponent},
+                          ]
+                        },
+                        
+                        
                         {path:"**",component:AccessDeniedComponent},
                         ];
 

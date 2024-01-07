@@ -1,6 +1,6 @@
 import { UserNameValidators } from './../../validators/username.validators';
 import { Component } from '@angular/core';
-import {AuthService, LoginRequest} from "../../services/auth.service";
+import {AuthService, LoginRequest} from "../../services/auth/auth.service";
 import {FormControl, FormGroup, NgForm, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 

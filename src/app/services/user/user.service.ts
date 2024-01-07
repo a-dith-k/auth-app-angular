@@ -1,4 +1,4 @@
-import { UserProfile } from './../pages/profile/profile.component';
+import { UserProfile } from '../../pages/profile/profile.component';
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Router} from "@angular/router";

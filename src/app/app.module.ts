@@ -10,7 +10,7 @@ import { SignupComponent } from './pages/signup/signup.component';
 import { HomeComponent } from './pages/home/home.component';
 import { SignInComponent } from './pages/sign-in/sign-in.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {AuthService} from "./services/auth.service";
+import {AuthService} from "./services/auth/auth.service";
 import {HttpClientModule} from "@angular/common/http";
 import {MatInputModule} from '@angular/material/input';
 import { ProfileComponent } from './pages/profile/profile.component';

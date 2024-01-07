@@ -30,6 +30,6 @@ export class AdminService {
   }
 
   updateUser(user:any,id:number) {
-   return  this.http.put(`${this.url}/${id}`,JSON.stringify(user),{headers:{Authorization:'Bearer '.concat(localStorage.getItem('token') as string)}});
+   return  this.http.put(`${this.url}/${id}`,JSON.stringify(user),{headers:{Authorization:'Bearer '.concat(localStorage.getItem('token') as string),'Content-Type':'application/json'}});
   }
 }

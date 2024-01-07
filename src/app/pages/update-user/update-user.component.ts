@@ -3,7 +3,7 @@ import {ActivatedRoute, Route, Router} from "@angular/router";
 import {
   logBuilderStatusWarnings
 } from "@angular-devkit/build-angular/src/builders/browser-esbuild/builder-status-warnings";
-import {AuthService} from "../../services/auth.service";
+import {AuthService} from "../../services/auth/auth.service";
 import {AdminService} from "../../services/admin/admin.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {getLocaleFirstDayOfWeek} from "@angular/common";
