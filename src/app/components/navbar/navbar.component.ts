@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {AuthService} from "../../services/auth/auth.service";
 import {ThisReceiver} from "@angular/compiler";
 import {Observable} from "rxjs";
+import { Store } from '@ngrx/store';
+import { ObserversModule } from '@angular/cdk/observers';
 
 @Component({
   selector: 'navbar',
@@ -13,7 +15,12 @@ export class NavbarComponent implements OnInit{
   isLoggedIn$:Observable<boolean>=new Observable<boolean>();
   currentUser$:Observable<string>=new Observable<string>();
 
-  constructor(private AuthService:AuthService) {
+  login$=new Observable<boolean>;
+
+  constructor(private AuthService:AuthService,private store:Store<{userState:boolean}>) {
+     this.login$= store.select('userState');
+     console.log(this.login$);
+     
   }
 
   ngOnInit(){

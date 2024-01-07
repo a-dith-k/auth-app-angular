@@ -24,6 +24,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
 import { AddUserComponent } from './pages/add-user/add-user.component';
 import { UpdateUserComponent } from './pages/update-user/update-user.component';
+import { StoreModule } from '@ngrx/store';
+import { reducer } from './store/user.reducer';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,7 @@ import { UpdateUserComponent } from './pages/update-user/update-user.component';
     UpdateUserComponent
   ],
     imports: [
+        StoreModule.forRoot({ userState: reducer }),
         BrowserModule,
         AppRoutingModule,
         BrowserAnimationsModule,

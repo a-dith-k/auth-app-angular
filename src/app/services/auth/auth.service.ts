@@ -1,8 +1,11 @@
+import { reducer } from './../../store/user.reducer';
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http'
 import {JwtHelperService} from "@auth0/angular-jwt";
 import {Router} from "@angular/router";
 import {BehaviorSubject} from "rxjs";
+import { Store } from '@ngrx/store';
+import { logout } from 'src/app/store/user.actions';
 
 
 @Injectable({
@@ -10,7 +13,7 @@ import {BehaviorSubject} from "rxjs";
 })
 export class AuthService {
 
-  constructor(private http:HttpClient,private router:Router) { }
+  constructor(private http:HttpClient,private router:Router,private store:Store<{userState:boolean}>) { }
 
   private isLoggedInSubject=new BehaviorSubject<boolean>(this.isLoggedIn());
   isLoggedIn$=this.isLoggedInSubject.asObservable();
@@ -44,10 +47,12 @@ export class AuthService {
 
 
   isLoggedIn():boolean{
+    
     let token= localStorage.getItem('token');
    if(!token)return false;
    let jwtHelper=new JwtHelperService();
    let isExpired=jwtHelper.isTokenExpired(token);
+
     return !isExpired;
   }
 
@@ -66,7 +71,7 @@ export class AuthService {
   logOut() {
     this.router.navigateByUrl("/",).then(res=>console.log(res)).catch(err=>console.log(err))
     localStorage.removeItem('token');
-    this.isLoggedInSubject.next(false);
+    this.store.dispatch(logout());
     // this.CurrentUserSubject.next("");
   }
 

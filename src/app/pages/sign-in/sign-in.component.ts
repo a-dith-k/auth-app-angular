@@ -3,6 +3,8 @@ import { Component } from '@angular/core';
 import {AuthService, LoginRequest} from "../../services/auth/auth.service";
 import {FormControl, FormGroup, NgForm, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
+import { Store, props } from '@ngrx/store';
+import { login } from 'src/app/store/user.actions';
 
 @Component({
   selector: 'app-sign-in',
@@ -11,7 +13,7 @@ import {Router} from "@angular/router";
 })
 export class SignInComponent {
 
-  constructor(private authService:AuthService,private router:Router) {
+  constructor(private authService:AuthService,private router:Router,private store:Store<{userState:boolean}>) {
   }
 
   invalidUsernameOrPassword=false;
@@ -39,20 +41,23 @@ export class SignInComponent {
     }
 
     this.authService.login(request)
-      .subscribe((res:any)=> {
-        if(res.token){
-          localStorage.setItem('token',res.token)
-          this.authService.IsLoggedInSubject.next(true);
-          this.authService.CurrentUserSubject.next(this.authService.currentUser());
-          this.router.navigate(['/']);
-        }
-
-
-      },(err:Response)=>{
-        this.invalidUsernameOrPassword=true;
-        setTimeout(()=>{
-          this.invalidUsernameOrPassword=false;
-        },4000)
-      });
+      .subscribe(
+        {next:(res:any)=> {
+            if(res.token){
+              localStorage.setItem('token',res.token)
+              this.authService.IsLoggedInSubject.next(true);
+              this.authService.CurrentUserSubject.next(this.authService.currentUser());
+              this.router.navigate(['/']);
+              this.store.dispatch(login({username:res.username}));
+            }
+          },
+        error:(err:Response)=>{
+            this.invalidUsernameOrPassword=true;
+            setTimeout(()=>{
+              this.invalidUsernameOrPassword=false;
+            },4000)
+          }
+        
+        });
   }
 }
