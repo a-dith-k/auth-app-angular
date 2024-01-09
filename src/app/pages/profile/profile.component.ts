@@ -1,10 +1,7 @@
-import {Component, OnInit, signal} from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
-import {UserService} from "../../services/user/user.service";
-import {MatDialog, MatDialogModule, MatDialogRef} from "@angular/material/dialog";
-import {MatButtonModule} from "@angular/material/button";
-import {DialogAnimationComponent} from "../../components/dialog-animation/dialog-animation.component";
-import {Form, FormControl, FormGroup, Validators} from "@angular/forms";
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from "@angular/router";
+import { UserService } from "../../services/user/user.service";
+import { FormControl, FormGroup, Validators } from "@angular/forms";
 
 @Component({
   selector: 'app-profile',
@@ -14,7 +11,6 @@ import {Form, FormControl, FormGroup, Validators} from "@angular/forms";
 export class ProfileComponent implements OnInit{
 
   constructor(
-    public dialog: MatDialog,
     private router:Router,
     private route:ActivatedRoute,
     private userService:UserService) {

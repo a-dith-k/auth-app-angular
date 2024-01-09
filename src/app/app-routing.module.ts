@@ -5,12 +5,11 @@ import {HomeComponent} from "./pages/home/home.component";
 import {SignupComponent} from "./pages/signup/signup.component";
 import {SignInComponent} from "./pages/sign-in/sign-in.component";
 import {ProfileComponent} from "./pages/profile/profile.component";
-import {AppComponent} from "./app.component";
 import {authGuard} from "./guard/auth.guard";
 import {AccessDeniedComponent} from "./components/access-denied/access-denied.component";
-import {AddUserComponent} from "./pages/add-user/add-user.component";
 import {UpdateUserComponent} from "./pages/update-user/update-user.component";
 import { adminGuard } from './guard/admin.guard';
+import { AddUserComponent } from './pages/add-user/add-user.component';
 
 const routes: Routes = [{path:"",component:HomeComponent},
                         {path:"sign-up",component:SignupComponent},

@@ -1,11 +1,11 @@
-import { reducer } from './../../store/user.reducer';
+import { reducer } from '../../store/user/user.reducer';
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http'
 import {JwtHelperService} from "@auth0/angular-jwt";
 import {Router} from "@angular/router";
 import {BehaviorSubject} from "rxjs";
 import { Store } from '@ngrx/store';
-import { logout } from 'src/app/store/user.actions';
+import { logout } from 'src/app/store/user/user.actions';
 
 
 @Injectable({
@@ -54,6 +54,16 @@ export class AuthService {
    let isExpired=jwtHelper.isTokenExpired(token);
 
     return !isExpired;
+  }
+
+  isUserAdmin(){
+    let token= localStorage.getItem('token');
+
+    if(!token)return false;
+
+   let helper= new JwtHelperService();
+
+   return helper.decodeToken(token).admin;
   }
 
 

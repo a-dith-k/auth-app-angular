@@ -5,6 +5,9 @@
         <h1>Add User</h1>
       </div>
       <form #form="ngForm" (ngSubmit)="addUser(form.value)" class="p-3">
+        <div *ngIf="invalidData" class="alert alert-danger text-center">
+        {{errorMessage}}
+        </div>
         <mat-form-field class="w-100">
           <mat-label>username</mat-label>
           <input ngModel #username="ngModel" minlength="6"  required name="username" matInput  type="text" >

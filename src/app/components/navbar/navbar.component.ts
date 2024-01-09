@@ -12,7 +12,7 @@ import { ObserversModule } from '@angular/cdk/observers';
 })
 export class NavbarComponent implements OnInit{
 
-  isLoggedIn$:Observable<boolean>=new Observable<boolean>();
+  // isLoggedIn$:Observable<boolean>=new Observable<boolean>();
   currentUser$:Observable<string>=new Observable<string>();
 
   login$=new Observable<boolean>;
@@ -24,7 +24,7 @@ export class NavbarComponent implements OnInit{
   }
 
   ngOnInit(){
-    this.isLoggedIn$=this.authService.isLoggedIn$;
+    // this.isLoggedIn$=this.authService.isLoggedIn$;
     this.currentUser$=this.authService.currentUser$;
 
       // this.authService.currentUser$.subscribe(currentUser=>{

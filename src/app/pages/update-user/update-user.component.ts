@@ -1,12 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Route, Router} from "@angular/router";
-import {
-  logBuilderStatusWarnings
-} from "@angular-devkit/build-angular/src/builders/browser-esbuild/builder-status-warnings";
-import {AuthService} from "../../services/auth/auth.service";
+import {ActivatedRoute} from "@angular/router";
 import {AdminService} from "../../services/admin/admin.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {getLocaleFirstDayOfWeek} from "@angular/common";
+
 
 @Component({
   selector: 'app-update-user',
@@ -65,10 +61,6 @@ export class UpdateUserComponent implements OnInit{
    })
   }
 
-
-  getUserData(){
-
-  }
 
   updateUser(value: any) {
       this.adminService.updateUser(value,this.userId).subscribe(

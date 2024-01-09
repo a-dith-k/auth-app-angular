@@ -1,10 +1,10 @@
-import { UserNameValidators } from './../../validators/username.validators';
+import { UserNameValidators } from '../../validators/username.validators';
 import { Component } from '@angular/core';
 import {AuthService, LoginRequest} from "../../services/auth/auth.service";
 import {FormControl, FormGroup, NgForm, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
-import { Store, props } from '@ngrx/store';
-import { login } from 'src/app/store/user.actions';
+import { Store} from '@ngrx/store';
+import { login } from 'src/app/store/user/user.actions';
 
 @Component({
   selector: 'app-sign-in',
